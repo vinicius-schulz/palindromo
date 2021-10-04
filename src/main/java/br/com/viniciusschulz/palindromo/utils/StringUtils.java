@@ -1,9 +1,11 @@
 package br.com.viniciusschulz.palindromo.utils;
 
+import java.text.Normalizer;
 import java.util.regex.Pattern;
 
 public final class StringUtils {
 
+	private static final Pattern ONLY_ASCII = Pattern.compile("[^\\p{ASCII}]");
 	private static final Pattern NO_SPECIAL = Pattern.compile("[^a-zA-Z0-9]");
 
 	private StringUtils() {
@@ -29,7 +31,8 @@ public final class StringUtils {
 	public static String removeSpecialChars(String stringFonte) {
 		String passa = "";
 		if (!isEmptyOrNull(stringFonte)) {
-			passa = NO_SPECIAL.matcher(stringFonte).replaceAll("");
+			passa = ONLY_ASCII.matcher(Normalizer.normalize(stringFonte, Normalizer.Form.NFD)).replaceAll("");
+			passa = NO_SPECIAL.matcher(passa).replaceAll("");
 		}
 
 		return passa;
