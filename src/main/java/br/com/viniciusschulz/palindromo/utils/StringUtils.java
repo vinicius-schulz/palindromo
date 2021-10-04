@@ -28,7 +28,7 @@ public final class StringUtils {
 		return word == null || word.isEmpty();
 	}
 
-	public static String removeSpecialChars(String stringFonte) {
+	public static String replaceSpecialChars(String stringFonte) {
 		String passa = "";
 		if (!isEmptyOrNull(stringFonte)) {
 			passa = ONLY_ASCII.matcher(Normalizer.normalize(stringFonte, Normalizer.Form.NFD)).replaceAll("");

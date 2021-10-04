@@ -11,11 +11,16 @@ public class PalindromoService {
 
 	public Boolean isPalindromo(String texto) {
 
-		log.info("Objeto: {}", texto);
+		log.info("Texto original: {}", texto);
+		String retorno = StringUtils.replaceSpecialChars(texto);
 
-		String retorno = StringUtils.removeSpecialChars(texto);
+		log.info("Texto sem caracteres especiais: {}", retorno);
+
 		retorno = StringUtils.toLowerCase(retorno);
+		log.info("Texto com case sensitive ignorado: {}", retorno);
+
 		String palindromo = StringUtils.invert(retorno);
+		log.info("Palindromo esperado: {}", palindromo);
 
 		return retorno.equals(palindromo);
 
